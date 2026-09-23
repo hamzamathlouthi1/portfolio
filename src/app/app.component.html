@@ -1,0 +1,61 @@
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="Hamza Mathlouthi — home">HM<span>.</span></a>
+  <nav aria-label="Main navigation"><a href="#about">About</a><a href="#skills">Skills</a></nav>
+  <a class="header-link" [href]="links.linkedin" target="_blank" rel="noopener noreferrer">Let's connect <span aria-hidden="true">↗</span></a>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-copy">
+      <p class="availability"><span></span> Full-stack engineering student</p>
+      <h1>Building software<br>from <em>idea</em> to impact.</h1>
+      <p class="intro">Full-stack engineering student at ESPRIT combining Java, Spring Boot, .NET and Angular to build end-to-end solutions, transferring SDLC, CI/CD and Agile practices across projects to deliver measurable added value.</p>
+      <div class="socials" aria-label="Social links">
+        <a [href]="links.github" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7A11.5 11.5 0 0 0 8.4 23c.6.1.8-.2.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.1 0 0 1-.3 3.2 1.2a11.2 11.2 0 0 1 5.8 0C17 4.6 18 4.9 18 4.9c.6 1.5.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z"/></svg>
+          GitHub <span>↗</span>
+        </a>
+        <a [href]="links.linkedin" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3h-17A2.5 2.5 0 0 0 1 5.5v13A2.5 2.5 0 0 0 3.5 21h17a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 20.5 3ZM8 18H5V9h3v9ZM6.5 7.8A1.75 1.75 0 1 1 6.5 4.3a1.75 1.75 0 0 1 0 3.5ZM19 18h-3v-4.4c0-2.6-3-2.4-3 0V18h-3V9h3v1.4c1.4-2.5 6-2.7 6 2.4V18Z"/></svg>
+          LinkedIn <span>↗</span>
+        </a>
+      </div>
+    </div>
+    <div class="portrait-wrap" aria-label="Portrait of Hamza Mathlouthi">
+      <div class="portrait-frame"><img src="images/me.jpg" alt="Hamza Mathlouthi" width="400" height="400"></div>
+      <div class="portrait-note"><span>Based in Tunisia</span><strong>ESPRIT</strong></div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <p class="section-label">About me</p>
+    <p class="statement">I turn complex requirements into <span>clean, dependable products</span> — connecting thoughtful interfaces, robust backends and reliable delivery pipelines.</p>
+  </section>
+
+  <section class="skills-section" id="skills">
+    <div class="section-head">
+      <div><p class="section-label">Technical toolkit</p><h2>Skills & technologies</h2></div>
+      <p>A practical stack for designing, building, testing and shipping complete software solutions.</p>
+    </div>
+    <div class="skill-groups">
+      @for (group of groups; track group.title) {
+        <article class="skill-group">
+          <header><span>{{ group.eyebrow }}</span><h3>{{ group.title }}</h3></header>
+          <div class="skill-list">
+            @for (skill of group.skills; track skill.name) {
+              <div class="skill-card">
+                <div class="icon-box">
+                  @if (skill.icon) { <img [src]="skill.icon" [alt]="skill.name + ' logo'" loading="lazy"> }
+                  @else { <span>{{ skill.short }}</span> }
+                </div>
+                <span>{{ skill.name }}</span>
+              </div>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</main>
+
+<footer><a class="brand" href="#home">HM<span>.</span></a><p>Full-stack engineering student · ESPRIT</p><p>© {{ year }}</p></footer>
