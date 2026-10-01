@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 
 interface Skill { name: string; icon?: string; short?: string; }
 interface SkillGroup { title: string; eyebrow: string; skills: Skill[]; }
-interface Project { title: string; description: string; image: string; technologies: string[]; features: string[]; githubUrl: string; accent: string; }
+interface Project { title: string; description: string; image: string; imageAlt: string; technologies: string[]; features: string[]; githubUrl: string; accent: string; }
 
 @Component({ selector: 'app-root', standalone: true, templateUrl: './app.component.html', styleUrl: './app.component.css' })
 export class AppComponent implements AfterViewInit, OnDestroy {
@@ -48,9 +48,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   ];
 
   readonly projects: Project[] = [
-    { title: 'Skill2Job', description: 'A full-stack learning and certification platform connecting learners, trainers and partner companies with career opportunities.', image: 'images/projects/skill2job.png', technologies: ['Angular', 'Spring Boot', 'Java 17', 'MySQL', 'JWT', 'Microservices'], features: ['Online & onsite sessions', 'Courses & progress tracking', 'Exams & certificates', 'Partner job offers'], githubUrl: 'https://github.com/hamzamathlouthi1/skill2job_pi', accent: 'Learning → certification → opportunity' },
-    { title: 'Rent Car', description: 'A full-stack car-rental platform with secure customer journeys, fleet administration and a resilient reservation workflow.', image: 'images/projects/rent-car.png', technologies: ['Angular', 'Spring Boot', 'Java 21', 'PostgreSQL', 'Docker', 'JWT'], features: ['Vehicle catalogue', 'Availability & overlap checks', 'Private identity documents', 'Admin approval workflow'], githubUrl: 'https://github.com/hamzamathlouthi1/rent_car', accent: 'Discover → reserve → drive' },
-    { title: 'Travel Agency', description: 'A modern travel platform for destination discovery, hotel search and secure customer account experiences.', image: 'images/projects/travel-agency.png', technologies: ['Angular', 'TypeScript', 'Spring Boot', 'Java 21', 'PostgreSQL', 'Docker'], features: ['Destination discovery', 'Hotel search interface', 'User registration', 'Email verification & JWT'], githubUrl: 'https://github.com/hamzamathlouthi1/travel_agency', accent: 'Discover → plan → experience' }
+    { title: 'Skill2Job', description: 'A full-stack learning and certification platform connecting learners, trainers and partner companies with career opportunities.', image: 'images/projects/skill2job.png', imageAlt: 'Skill2Job learning platform dashboard showing course and certification features', technologies: ['Angular', 'Spring Boot', 'Java 17', 'MySQL', 'JWT', 'Microservices'], features: ['Online & onsite sessions', 'Courses & progress tracking', 'Exams & certificates', 'Partner job offers'], githubUrl: 'https://github.com/hamzamathlouthi1/skill2job_pi', accent: 'Learning → certification → opportunity' },
+    { title: 'Rent Car', description: 'A full-stack car-rental platform with secure customer journeys, fleet administration and a resilient reservation workflow.', image: 'images/projects/rent-car.png', imageAlt: 'Rent Car vehicle rental interface showing the car catalogue and booking experience', technologies: ['Angular', 'Spring Boot', 'Java 21', 'PostgreSQL', 'Docker', 'JWT'], features: ['Vehicle catalogue', 'Availability & overlap checks', 'Private identity documents', 'Admin approval workflow'], githubUrl: 'https://github.com/hamzamathlouthi1/rent_car', accent: 'Discover → reserve → drive' },
+    { title: 'Travel Agency', description: 'A modern travel platform for destination discovery, hotel search and secure customer account experiences.', image: 'images/projects/travel-agency.png', imageAlt: 'Travel Agency website interface showing destination discovery and hotel search', technologies: ['Angular', 'TypeScript', 'Spring Boot', 'Java 21', 'PostgreSQL', 'Docker'], features: ['Destination discovery', 'Hotel search interface', 'User registration', 'Email verification & JWT'], githubUrl: 'https://github.com/hamzamathlouthi1/travel_agency', accent: 'Discover → plan → experience' }
   ];
 
   constructor() {
