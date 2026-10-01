@@ -1,61 +1,81 @@
-<header class="site-header">
-  <a class="brand" href="#home" aria-label="Hamza Mathlouthi — home">HM<span>.</span></a>
-  <nav aria-label="Main navigation"><a href="#about">About</a><a href="#skills">Skills</a></nav>
-  <a class="header-link" [href]="links.linkedin" target="_blank" rel="noopener noreferrer">Let's connect <span aria-hidden="true">↗</span></a>
+<div class="scroll-progress" [style.width.%]="scrollProgress" aria-hidden="true"></div>
+<header class="site-header" [class.scrolled]="scrollProgress > 2">
+  <a class="brand" href="#home" aria-label="Hamza Mathlouthi — home" (click)="closeMenu()">HM<span>.</span></a>
+  <nav aria-label="Main navigation" [class.open]="menuOpen">
+    @for (item of navItems; track item) { <a [href]="'#' + item" [class.active]="activeSection === item" (click)="closeMenu()">{{ item }}</a> }
+  </nav>
+  <div class="header-actions">
+    <button class="theme-toggle" type="button" (click)="toggleTheme()" [attr.aria-label]="isDark ? 'Use light theme' : 'Use dark theme'">{{ isDark ? '☀' : '◐' }}</button>
+    <a class="header-link" href="#contact">Let's connect <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" type="button" (click)="toggleMenu()" [class.open]="menuOpen" [attr.aria-expanded]="menuOpen" aria-label="Toggle navigation"><span></span><span></span></button>
+  </div>
 </header>
 
 <main>
   <section class="hero" id="home">
-    <div class="hero-copy">
-      <p class="availability"><span></span> Full-stack engineering student</p>
+    <div class="hero-grid" aria-hidden="true"></div><div class="pointer-glow" aria-hidden="true"></div>
+    <div class="hero-copy" data-reveal>
+      <p class="availability"><span></span> Available for opportunities</p>
+      <p class="hero-kicker">Hamza Mathlouthi · Full-stack engineering student</p>
       <h1>Building software<br>from <em>idea</em> to impact.</h1>
       <p class="intro">Full-stack engineering student at ESPRIT combining Java, Spring Boot, .NET and Angular to build end-to-end solutions, transferring SDLC, CI/CD and Agile practices across projects to deliver measurable added value.</p>
-      <div class="socials" aria-label="Social links">
-        <a [href]="links.github" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7A11.5 11.5 0 0 0 8.4 23c.6.1.8-.2.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.1 0 0 1-.3 3.2 1.2a11.2 11.2 0 0 1 5.8 0C17 4.6 18 4.9 18 4.9c.6 1.5.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z"/></svg>
-          GitHub <span>↗</span>
-        </a>
-        <a [href]="links.linkedin" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3h-17A2.5 2.5 0 0 0 1 5.5v13A2.5 2.5 0 0 0 3.5 21h17a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 20.5 3ZM8 18H5V9h3v9ZM6.5 7.8A1.75 1.75 0 1 1 6.5 4.3a1.75 1.75 0 0 1 0 3.5ZM19 18h-3v-4.4c0-2.6-3-2.4-3 0V18h-3V9h3v1.4c1.4-2.5 6-2.7 6 2.4V18Z"/></svg>
-          LinkedIn <span>↗</span>
-        </a>
+      <div class="hero-actions"><a class="button button-primary" href="#projects">View projects <span>↓</span></a><a class="button button-secondary" href="#contact">Let's connect <span>↗</span></a></div>
+      <div class="socials" aria-label="Social links"><a [href]="links.github" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><a [href]="links.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a></div>
+    </div>
+    <div class="portrait-wrap" data-reveal>
+      <div class="portrait-orbit" aria-hidden="true"><span>Java</span><span>Angular</span><span>Spring</span></div>
+      <div class="portrait-frame"><img src="images/me.jpg" alt="Hamza Mathlouthi" width="560" height="650" fetchpriority="high"></div>
+      <div class="portrait-note"><span><i></i> Based in Tunisia</span><strong>ESPRIT · Software engineering</strong></div>
+    </div>
+  </section>
+
+  <section class="about section" id="about">
+    <div class="section-index" data-reveal><span>01</span><p class="section-label">About me</p></div>
+    <div class="about-content">
+      <p class="statement" data-reveal>I turn complex requirements into <span>clean, dependable products</span> — connecting thoughtful interfaces, robust backends and reliable delivery pipelines.</p>
+      <div class="about-grid" data-reveal>
+        <p>I enjoy working across the complete product journey: understanding a problem, shaping the architecture, crafting the interface and building a delivery path that keeps the result reliable.</p>
+        <div class="engineering-card"><div class="card-top"><span>Engineering profile</span><span class="live-dot">Active</span></div><div class="profile-stack"><span>Full-stack development</span><span>Software engineering</span><span>Angular</span><span>Spring Boot</span><span>Java</span><span>.NET</span><span>DevOps</span></div><div class="code-line"><span>01</span><code>idea → architecture → product</code></div></div>
       </div>
     </div>
-    <div class="portrait-wrap" aria-label="Portrait of Hamza Mathlouthi">
-      <div class="portrait-frame"><img src="images/me.jpg" alt="Hamza Mathlouthi" width="400" height="400"></div>
-      <div class="portrait-note"><span>Based in Tunisia</span><strong>ESPRIT</strong></div>
-    </div>
   </section>
 
-  <section class="about" id="about">
-    <p class="section-label">About me</p>
-    <p class="statement">I turn complex requirements into <span>clean, dependable products</span> — connecting thoughtful interfaces, robust backends and reliable delivery pipelines.</p>
-  </section>
-
-  <section class="skills-section" id="skills">
-    <div class="section-head">
-      <div><p class="section-label">Technical toolkit</p><h2>Skills & technologies</h2></div>
-      <p>A practical stack for designing, building, testing and shipping complete software solutions.</p>
-    </div>
+  <section class="skills-section section" id="skills">
+    <div class="section-head" data-reveal><div><p class="section-label">02 / Technical toolkit</p><h2>Skills & technologies</h2></div><p>A practical stack for designing, building, testing and shipping complete software solutions.</p></div>
     <div class="skill-groups">
-      @for (group of groups; track group.title) {
-        <article class="skill-group">
+      @for (group of groups; track group.title; let groupIndex = $index) {
+        <article class="skill-group" data-reveal [style.--delay]="groupIndex * 55 + 'ms'">
           <header><span>{{ group.eyebrow }}</span><h3>{{ group.title }}</h3></header>
-          <div class="skill-list">
-            @for (skill of group.skills; track skill.name) {
-              <div class="skill-card">
-                <div class="icon-box">
-                  @if (skill.icon) { <img [src]="skill.icon" [alt]="skill.name + ' logo'" loading="lazy"> }
-                  @else { <span>{{ skill.short }}</span> }
-                </div>
-                <span>{{ skill.name }}</span>
-              </div>
-            }
+          <div class="skill-list">@for (skill of group.skills; track skill.name) { <div class="skill-card"><div class="icon-box">@if (skill.icon) { <img [src]="skill.icon" [alt]="skill.name + ' logo'" loading="lazy"> } @else { <span>{{ skill.short }}</span> }</div><span>{{ skill.name }}</span></div> }</div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="projects-section section" id="projects">
+    <div class="section-head" data-reveal><div><p class="section-label">03 / Selected work</p><h2>Featured projects</h2></div><p>Full-stack products shaped around real workflows—from learning and certification to mobility and travel.</p></div>
+    <div class="project-grid">
+      @for (project of projects; track project.title; let projectIndex = $index) {
+        <article class="project-card" data-reveal [style.--delay]="projectIndex * 90 + 'ms'">
+          <button class="project-visual" type="button" (click)="openProject(project)" [attr.aria-label]="'View details for ' + project.title"><img [src]="project.image" [alt]="project.title + ' product interface showcase'" width="1536" height="1024" loading="lazy"><span class="visual-overlay">Explore case study <i>↗</i></span><span class="project-number">0{{ projectIndex + 1 }}</span></button>
+          <div class="project-body"><p class="project-accent">{{ project.accent }}</p><h3>{{ project.title }}</h3><p>{{ project.description }}</p><div class="tech-list" aria-label="Technologies">@for (technology of project.technologies; track technology) { <span>{{ technology }}</span> }</div><ul>@for (feature of project.features; track feature) { <li>{{ feature }}</li> }</ul>
+            <div class="project-links"><button type="button" (click)="openProject(project)">View project <span>↗</span></button><a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7A11.5 11.5 0 0 0 8.4 23c.6.1.8-.2.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.1 0 0 1-.3 3.2 1.2a11.2 11.2 0 0 1 5.8 0C17 4.6 18 4.9 18 4.9c.6 1.5.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z"/></svg> Source</a></div>
           </div>
         </article>
       }
     </div>
   </section>
+
+  <section class="experience-section section" id="experience">
+    <div class="section-head" data-reveal><div><p class="section-label">04 / Journey</p><h2>Education & practice</h2></div><p>A foundation in engineering, strengthened through complete software products.</p></div>
+    <div class="timeline"><article data-reveal><span class="timeline-dot"></span><p class="timeline-meta">Education · Present</p><h3>ESPRIT School of Engineering</h3><p>Full-stack engineering student developing skills across software architecture, frontend and backend systems, databases and DevOps practices.</p></article><article data-reveal><span class="timeline-dot"></span><p class="timeline-meta">Academic engineering · 2025—2026</p><h3>PIDEV · Skill2Job</h3><p>A collaborative full-stack platform built around learning, sessions, certification and recruitment, using a microservices architecture.</p></article><article data-reveal><span class="timeline-dot"></span><p class="timeline-meta">Applied projects</p><h3>Product-focused development</h3><p>Turning engineering concepts into working applications through Rent Car, Travel Agency and other end-to-end software projects.</p></article></div>
+  </section>
+
+  <section class="contact-section section" id="contact" data-reveal><p class="section-label">05 / Start a conversation</p><h2>Let's build something<br><em>together.</em></h2><p>Have an opportunity, a technical challenge or a product idea? I’m always open to a thoughtful conversation.</p><div class="contact-actions"><a class="button button-primary" [href]="links.linkedin" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <span>↗</span></a><a class="button button-secondary" [href]="links.github" target="_blank" rel="noopener noreferrer">Explore GitHub <span>↗</span></a></div></section>
 </main>
 
-<footer><a class="brand" href="#home">HM<span>.</span></a><p>Full-stack engineering student · ESPRIT</p><p>© {{ year }}</p></footer>
+<footer><a class="brand" href="#home">HM<span>.</span></a><p>Full-stack engineering student · ESPRIT</p><div><a [href]="links.github" target="_blank" rel="noopener noreferrer">GitHub</a><a [href]="links.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a><span>© {{ year }}</span></div></footer>
+
+@if (selectedProject; as project) {
+  <div class="modal-backdrop" role="presentation" (click)="closeProject()"><article class="project-modal" role="dialog" aria-modal="true" [attr.aria-labelledby]="'modal-' + project.title" (click)="$event.stopPropagation()"><button class="modal-close" type="button" (click)="closeProject()" aria-label="Close project details">×</button><img [src]="project.image" [alt]="project.title + ' product showcase'"><div class="modal-content"><p class="project-accent">{{ project.accent }}</p><h2 [id]="'modal-' + project.title">{{ project.title }}</h2><p>{{ project.description }}</p><div class="modal-columns"><div><h3>Technology</h3><div class="tech-list">@for (technology of project.technologies; track technology) { <span>{{ technology }}</span> }</div></div><div><h3>Core features</h3><ul>@for (feature of project.features; track feature) { <li>{{ feature }}</li> }</ul></div></div><a class="button button-primary" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">View source on GitHub <span>↗</span></a></div></article></div>
+}
